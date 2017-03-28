@@ -1,0 +1,37 @@
+version: "2"
+services:
+    composer:
+        image: composer/composer:php7
+        container_name: html_composer
+        command: install --ignore-platform-reqs
+        volumes:
+            - ../app:/app
+    nginx:
+        image: phalconphp/nginx
+        container_name: html_nginx
+        ports:
+            - "7000:80"
+        volumes:
+            - ../app:/app
+            - ./nginx/default.conf:/etc/nginx/sites-available/default.conf
+            - ./nginx/default.conf:/etc/nginx/sites-enabled/default.conf
+        depends_on:
+            - php
+    php:
+        build:
+            context: phalcon
+            dockerfile: Dockerfile
+        entrypoint: ""
+        command: bash -c "php-fpm7.0 -F"
+        container_name: html_phalcon
+        working_dir: /app
+        ports:
+            - "12000:9000"
+            - "13000:9001"
+        volumes:
+            - ../app:/app
+        depends_on:
+            - composer
+        links:
+            - composer
+        dns: 8.8.8.8

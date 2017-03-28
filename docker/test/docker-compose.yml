@@ -1,0 +1,116 @@
+version: "2"
+services:
+    composer:
+        image: composer/composer:php7
+        container_name: vkbot_composer_test
+        command: install --ignore-platform-reqs
+        volumes:
+            - ../../app:/app
+    nginx:
+        image: phalconphp/nginx
+        container_name: vkbot_nginx_test
+        ports:
+            - "7010:80"
+        volumes:
+            - ../../app:/app
+            - ../nginx/default-test.conf:/etc/nginx/sites-available/default.conf
+            - ../nginx/default-test.conf:/etc/nginx/sites-enabled/default.conf
+        depends_on:
+            - php
+    php:
+        build:
+            context: ../phalcon
+            dockerfile: Dockerfile
+        entrypoint: ""
+        command: bash -c "php-fpm7.0 -F"
+#        command: bash -c "phalcon migration run && php-fpm7.0 -F"
+        labels:
+            project.git: https://gitlab.com/bongrun/vkbot.git
+        container_name: vkbot_phalcon_test
+        working_dir: /app
+        ports:
+            - "12010:9000"
+            - "13010:9001"
+        volumes:
+            - ../../app:/app
+        depends_on:
+            - composer
+        links:
+            - composer
+        dns: 8.8.8.8
+    mongodata:
+        image: mongo:3.0.4
+        container_name: vkbot_mongodata_test
+        volumes:
+            - /data/db
+        command: --break-mongo
+    mongo:
+        image: mongo:3.0.4
+        container_name: vkbot_mongo_test
+        volumes_from:
+            - mongodata
+#        ports:
+#            - "27017:27017"
+        command: --smallfiles --rest
+#        command: --smallfiles --rest --auth
+    redis:
+        image: redis:alpine
+        command: redis-server --requirepass redis
+        container_name: vkbot_redis_test
+        volumes:
+          - /data
+#        ports:
+#            - "14000:6379"
+
+##KONG
+#    kong-database:
+#        image: postgres:9.4
+#        container_name: fm_kong_database
+#        ports:
+#            - "54320:5432"
+#        environment:
+#            - POSTGRES_USER=kong
+#            - POSTGRES_DB=kong
+#            - POSTGRES_PASSWORD=123123
+##        volumes:
+##            - "db-data-kong-postgres:/var/lib/postgresql/data"
+#    kong:
+#        image: kong:0.9.1
+#        container_name: fm_kong
+#        #environment:
+#         #   - KONG_DATABASE=postgres
+#          #  - KONG_PG_HOST=kong-database
+#        restart: always
+#        volumes:
+#            #- /e/docker/compose/kong.conf:/etc/kong/kong.conf.default
+#            - ../kong/kong.conf:/etc/kong/kong.conf
+#        ports:
+#            - "8000:8000"
+#            - "8443:8443"
+#            - "8001:8001"
+#            - "7946:7946"
+#            - "7946:7946/udp"
+#        links:
+#            - kong-database
+#    kong-dashboard:
+#        image: pgbi/kong-dashboard
+#        container_name: fm_kong_dashboard
+#        ports:
+#            - "8080:8080"
+#    kongfig:
+#        image: mashupmill/kongfig
+#        container_name: fm_kong_kongfig
+#        links:
+#            - 'kong:kong'
+#        volumes:
+#            - '../kong/config.yml:/config.yml'
+#        command: --path /config.yml --host kong:8001
+
+#volumes:
+#  db-data-kong-postgres:
+#  db-data-postgres-auth:
+#
+#networks:
+#  default:
+#    external:
+#      name: phalcon_nw
