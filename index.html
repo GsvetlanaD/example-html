@@ -93,29 +93,127 @@
 <div class="container">
     <div class="row">
         <h1>Название страницы</h1>
-        <p><i class="glyphicon glyphicon-heart"></i></p>
         <p>
-            <span class="fa-stack fa-5x">
-            <i class="fa fa-circle-thin fa-stack-2x" style="color:#ccc"></i>
-            <i class="fa fa-vk fa-stack-1x "style="color:#333"></i>
-                </span>
+            <a href="#" class="btn btn-default"><i class="fa fa-spinner fa-spin"></i></a>
+            <a href="#" class="btn btn-primary">Кнопка</a>
+            <a href="#" class="btn btn-success">Кнопка</a>
+            <a href="#" class="btn btn-warning">Кнопка</a>
+            <a href="#" class="btn btn-info">Кнопка</a>
+            <a href="#" class="btn btn-danger">Кнопка</a>
+            <a href="#" class="btn btn-link">Кнопка</a>
+        </p>
+        <p>
+            <a href="#" class="btn btn-primary btn-lg">Кнопка</a>
+            <a href="#" class="btn btn-primary ">Кнопка</a>
+            <a href="#" class="btn btn-primary btn-sm">Кнопка</a>
+            <a href="#" class="btn btn-primary btn-xs">Кнопка</a>
+        </p>
+        <p>
+            <a href="#" class="btn btn-primary btn-lg btn-block active">Кнопка</a>
+            <a href="#" class="btn btn-primary btn-lg btn-block disabled">Кнопка</a>
         </p>
     </div>
 </div>
-
-
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-6 ">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4"></div>
-                <div class="col-md-4"></div>
+        <div class="btn-toolbar">
+            <div class="btn-group btn-group-lg">
+                <a href="#" class="btn btn-success"><i class="fa fa-spinner"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-file"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            </div>
+            <div class="btn-group btn-group-lg">
+                <a href="#" class="btn btn-success"><i class="fa fa-spinner"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-file"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            </div>
+            <div class="btn-group btn-group-lg">
+                <a href="#" class="btn btn-success"><i class="fa fa-spinner"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-file"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
             </div>
         </div>
-        <div class="col-md-4 hidden-md visible-lg"></div>
+        <br>
+        <div class="btn-toolbar">
+            <div class="btn-group btn-group-justified">
+                <a href="#" class="btn btn-success"><i class="fa fa-spinner"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-file"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            </div>
+        </div>
+        <br>
+        <div class="btn-group btn-group-vertical">
+            <a href="#" class="btn btn-success"><i class="fa fa-spinner"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-file"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-download"></i></a>
+        </div>
+
+        <div class="btn-group ">
+            <button class="btn btn-success ">
+                Впадающее меню
+            </button>
+            <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Ссылка Ссылка СсылкаСсылкаСсылка</a></li>
+                <li><a href="#">Ссылка Ссылка СсылкаСсылкаСсылка</a></li>
+                <li><a href="#">Ссылка Ссылка СсылкаСсылкаСсылка</a></li>
+                <li><a href="#">Ссылка Ссылка СсылкаСсылкаСсылка</a></li>
+                <li><a href="#">Ссылка Ссылка СсылкаСсылкаСсылка</a></li>
+                <li><a href="#">Ссылка Ссылка СсылкаСсылкаСсылка</a></li>
+            </ul>
+        </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 ">
+            <br>
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab-1" data-toggle="tab">Вкладка 1</a></li>
+                    <li><a href="#tab-2" data-toggle="tab">Вкладка 2</a></li>
+                    <li><a href="#tab-3" data-toggle="tab">Вкладка 3</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active " id="tab-1">
+                        <p>Параграф с текстом 1</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab-2">
+                        <p>Параграф с текстом 2</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab-3">
+                        <p>Параграф с текстом 3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <a href="#spoiler-1" data-toggle="collapse" class="btn btn-primary">Открыть спойлер</a>
+            <div class="collapse" id="spoiler-1">
+                <div class="well">
+                    <p>Параграф с текстом</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!--Include all compiled plugins (below), or include
